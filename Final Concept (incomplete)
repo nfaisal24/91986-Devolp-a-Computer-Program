@@ -5,6 +5,7 @@
 #Import tkinter so we can make a GUI
 from tkinter import *
 import random
+from tkinter import ttk # For the combobox
 
 bg_colour1= "RosyBrown1"
 bg_colour2 = "thistle" 
@@ -71,6 +72,11 @@ def append_name ():
     entry_Amount_hired.delete(0,'end')
     counters['total_entries'] += 1
 
+#creating the entry as a list of values
+    entry=([entry_Customer_full_name.get(),entry_The_item_hired.get(),entry_Amount_hired.get(),Receipt_number])
+        #append the entry to the storedetails 
+    store_details.append(entry)
+
 #delete a row from the list
 def delete_row ():
     #find which row is to be deleted and delete it
@@ -124,10 +130,12 @@ main_window =Tk()
 # Add background color
 main_window.configure(background=bg_colour2)
 
+items_hired=['Plates','Spoons','Napkins','Forks','Knifes']
+
 entry_Customer_full_name = Entry(main_window)
 entry_Customer_full_name.grid(column=1,row=0)
 
-entry_The_item_hired = Entry(main_window)
+entry_The_item_hired = ttk.Combobox(main_window, values= items_hired)
 entry_The_item_hired.grid(column=1,row=1)
 
 entry_Amount_hired = Entry(main_window)
@@ -135,5 +143,3 @@ entry_Amount_hired.grid(column=1,row=3)
 
 delete_Row = Entry(main_window)
 delete_Row.grid(column=3,row=3)
-
-main()
